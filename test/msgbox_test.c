@@ -24,7 +24,7 @@
 #include <time.h>
 #include <unistd.h>
 
-#include "cstructs/memprofile.h"
+#include "cstructs/src/memprofile.h"
 
 #define array_size(x) (sizeof(x) / sizeof(x[0]))
 

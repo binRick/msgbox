@@ -310,7 +310,7 @@ int udp_test() { return basic_test(msg_udp); }
 int tcp_test() { return basic_test(msg_tcp); }
 
 int main(int argc, char **argv) {
-  set_verbose(0);  // Turn this on to help debug tests.
+  set_verbose(1);  // Turn this on to help debug tests.
 
   // Generate random port numbers to help debugging in the face of bind errors
   // caused by 'address already in use' (from the internal TIME_WAIT tcp state).

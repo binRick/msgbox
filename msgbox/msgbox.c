@@ -13,7 +13,11 @@
 // http://stackoverflow.com/a/1372836
 #define _WINSOCKAPI_
 
-#include "../cstructs/cstructs.h"
+#include "cstructs/src/cstructs.h"
+/************************************/
+#include "cstructs/src/array.c"
+#include "cstructs/src/map.c"
+#include "cstructs/src/list.c"
 #include "dbgcheck.h"
 
 #include <stdio.h>
@@ -48,7 +52,7 @@ static int net_allocs[] = {0};  // Indexed by class.
 
 // TODO Remove this section as its functionality is being replaced by dbgcheck.
 
-#include "../cstructs/memprofile.h"
+#include "cstructs/src/memprofile.h"
 #include <assert.h>
 
 #else // non-DEBUG mode

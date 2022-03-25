@@ -14,21 +14,26 @@
 # Variables for targets.
 
 # Target lists.
-tests            = out/msgbox_test out/timeout_test out/multiget_test out/multi_msg_per_loop_test out/many_udp_cli_one_server_loop
-cstructs_obj     = array.o map.o list.o memprofile.o
+tests            = 
+#out/msgbox_test out/timeout_test out/multiget_test out/multi_msg_per_loop_test out/many_udp_cli_one_server_loop
+cstructs_obj     = 
+#array.o map.o list.o memprofile.o
 cstructs_rel_obj = $(addprefix out/,       $(cstructs_obj))
 cstructs_dbg_obj = $(addprefix out/debug_, $(cstructs_obj))
-release_obj      = out/msgbox.o $(cstructs_rel_obj)
-debug_obj        = out/debug_msgbox.o $(cstructs_dbg_obj)
+release_obj      = out/msgbox.o
+#$(cstructs_rel_obj)
+debug_obj        = 
+#out/debug_msgbox.o
+#$(cstructs_dbg_obj)
 test_obj         = out/ctest.o $(debug_obj)
 examples         = $(addprefix out/,echo_client echo_server)
 
 # Variables for build settings.
-includes = -Imsgbox -I.
+includes = -Imsgbox -I. -I ../
 ifeq ($(shell uname -s), Darwin)
 	cflags = $(includes) -std=c99
 else
-	cflags = $(includes) -std=c99 -D _BSD_SOURCE -D _POSIX_C_SOURCE=200809 -D _GNU_SOURCE
+	cflags = $(includes) -std=c99 -D _DEFAULT_SOURCE -D _POSIX_C_SOURCE=200809 -D _GNU_SOURCE
 endif
 cc = gcc $(cflags)
 
@@ -67,14 +72,14 @@ out/ctest.o: test/ctest.c test/ctest.h | out
 out/libmsgbox.a: $(release_obj)
 	ar cr $@ $^
 
-$(cstructs_rel_obj) : out/%.o : cstructs/%.c cstructs/%.h | out
-	$(cc) -o $@ -c $<
+#$(cstructs_rel_obj) : out/%.o : cstructs/%.c cstructs/%.h | out
+#	$(cc) -o $@ -c $<
 
 out/msgbox.o : msgbox/msgbox.c msgbox/msgbox.h | out
 	$(cc) -o $@ -c $<
 
-$(cstructs_dbg_obj) : out/debug_%.o : cstructs/%.c cstructs/%.h | out
-	$(cc) -o $@ -c $< -g -DDEBUG
+#$(cstructs_dbg_obj) : out/debug_%.o : cstructs/%.c cstructs/%.h | out
+#	$(cc) -o $@ -c $< -g -DDEBUG
 
 out/debug_msgbox.o : msgbox/msgbox.c msgbox/msgbox.h | out
 	$(cc) -o $@ -c $< -g -DDEBUG
